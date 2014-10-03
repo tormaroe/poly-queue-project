@@ -56,8 +56,7 @@ var makeQueueResponse = function (queue) {
 server.post('/:queue', function (req, res, next) {
   var queue = getQueue(req.params.queue);
   push(queue, req.body);
-  var resObj = makeQueueResponse(queue);
-  res.send(resObj);
+  res.send(makeQueueResponse(queue));
   return next();
 });
 
@@ -77,5 +76,5 @@ server.get('/:queue/count', function (req, res, next) {
 });
 
 server.listen(8080, function() {
-  console.log('Poly Queue Deamon listening at', server.url);
+  console.log('Poly Queue Daemon listening at', server.url);
 });
