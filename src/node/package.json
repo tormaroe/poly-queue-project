@@ -1,0 +1,11 @@
+{
+  "name": "poly-queue-demon-node",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+  },
+  "dependencies": {
+    "restify": "^2.8.3"
+  },
+  "devDependencies": {}
+}
