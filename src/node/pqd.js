@@ -4,7 +4,7 @@ var server = restify.createServer();
 server.use(restify.bodyParser({ mapParams: false }));
 
 /*
-  Hiding the *queues* variable in a clojure
+  Hiding the *queues* variable in a closure
 */
 var getQueue = (function (queues) {
   return function (name) {

@@ -5,11 +5,7 @@ type
   TNode = tuple[next, prev: PNode, val: string]
 
   PQueue = ref TQueue
-  TQueue = object
-    queue: string
-    count: int
-    first: PNode
-    last: PNode
+  TQueue = tuple[queue: string, count: int, first, last: PNode]
 
 proc newNode(val: string, previous: PNode): PNode =
   new(result)
