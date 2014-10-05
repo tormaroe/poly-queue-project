@@ -23,13 +23,12 @@ var push = function (queue, value) {
   if (value) {
     var node = {
       next: null,
-      prev: queue.last, // may be null, but that's ok,
       value: value
     };
     if (queue.count === 0)
       queue.first = node;
     else
-      node.prev.next = node;
+      queue.last.next = node;
     queue.last = node;
     queue.count++;
   }
@@ -40,8 +39,6 @@ var pop = function (queue) {
   if (node) {
     queue.first = node.next;
     queue.count--;
-    if (queue.first)
-      queue.first.prev = null;
   }
   return node;
 };

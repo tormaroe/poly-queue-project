@@ -2,14 +2,13 @@ import jester, json, tables, locks
 
 type
   PNode = ref TNode
-  TNode = tuple[next, prev: PNode, val: string]
+  TNode = tuple[next: PNode, val: string]
 
   PQueue = ref TQueue
   TQueue = tuple[queue: string, count: int, first, last: PNode]
 
-proc newNode(val: string, previous: PNode): PNode =
+proc newNode(val: string): PNode =
   new(result)
-  result.prev = previous
   result.val = val
 
 proc newQueue(key: string): PQueue =
@@ -30,11 +29,11 @@ proc getQueue(key: string): PQueue =
 
 proc push(q: PQueue, val: string) =
   acquire(L)
-  let node = newNode(val, previous = q.last)
+  let node = newNode(val)
   if q.count == 0:
     q.first = node
   else:
-    node.prev.next = node
+    q.last.next = node
   q.last = node
   q.count = q.count + 1
   release(L)
@@ -45,8 +44,6 @@ proc pop(q: PQueue): PNode =
   if result != nil:
     q.first = result.next
     q.count = q.count - 1
-    if q.first != nil:
-      q.first.prev = nil
   release(L)
 
 proc `%`(q: PQueue): PJsonNode =
