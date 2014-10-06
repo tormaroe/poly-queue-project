@@ -1,0 +1,9 @@
+%% -*- erlang -*-
+{application, pqd,
+ [{description, "pqd"},
+  {vsn, "0.1"},
+  {modules, []},
+  {registered, []},
+  {mod, {'pqd_app', []}},
+  {env, []},
+  {applications, [kernel, stdlib, crypto]}]}.
